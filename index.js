@@ -1,7 +1,6 @@
 const mssql = require('mssql');
 
 function factory(options, {interval = 10} = {}) {
-
 	const connection = new mssql.Connection(options);
 	connection.connect = connection.connect.bind(connection);
 
@@ -13,17 +12,17 @@ function factory(options, {interval = 10} = {}) {
 				return;
 			}
 			connected = true;
-			connection.emit('connected');
 		}).catch(err => {
 			if (!connected) {
 				return;
 			}
 			connected = false;
-			connection.emit('disconnected');
+			connection.emit('disconnect', err);
 		})
 	}, interval * 1000)
 
 	connection.on('connect', function() {
+		connected = true;
 		connectionCheck();
 	});
 
