@@ -9,5 +9,8 @@
   "dependencies": {},
   "peerDependencies": {
     "mssql": "^3.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
