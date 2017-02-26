@@ -12,6 +12,7 @@ function factory(options, {interval = 10} = {}) {
 				return;
 			}
 			connected = true;
+			connection.emit('connect');
 		}).catch(err => {
 			if (!connected) {
 				return;
